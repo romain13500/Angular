@@ -3,5 +3,96 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "Calcul-impot": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/calcul-impot",
+      "sourceRoot": "projects/calcul-impot/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/calcul-impot",
+            "index": "projects/calcul-impot/src/index.html",
+            "main": "projects/calcul-impot/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/calcul-impot/tsconfig.app.json",
+            "assets": [
+              "projects/calcul-impot/src/favicon.ico",
+              "projects/calcul-impot/src/assets"
+            ],
+            "styles": [
+              "projects/calcul-impot/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "Calcul-impot:build:production"
+            },
+            "development": {
+              "browserTarget": "Calcul-impot:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "Calcul-impot:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/calcul-impot/tsconfig.spec.json",
+            "assets": [
+              "projects/calcul-impot/src/favicon.ico",
+              "projects/calcul-impot/src/assets"
+            ],
+            "styles": [
+              "projects/calcul-impot/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
   }
 }
