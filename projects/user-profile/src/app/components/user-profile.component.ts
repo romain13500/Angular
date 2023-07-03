@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ViewChild } from "@angular/core";
+import { Component, ElementRef, Input, TemplateRef, ViewChild, ViewContainerRef } from "@angular/core";
 
 @Component({
     selector: 'user-profile',
@@ -12,13 +12,15 @@ import { Component, ElementRef, Input, ViewChild } from "@angular/core";
         <button (click)="changePrenom()">Changer le prenom</button>
         <hr><br>
 
-        <ng-template>
+        <ng-template #monTemplate>
             <h2> hello wolrd</h2>
         </ng-template>
 
-        <ng-container>
+        <ng-container #monContainer>
             <h3>je suis le container </h3>
         </ng-container>
+
+        <button (click)="onClick()">Tester</button>
 
         
     `,
@@ -33,6 +35,21 @@ import { Component, ElementRef, Input, ViewChild } from "@angular/core";
 })
 
 export class UserProfileComponent {
+    @ViewChild('monTemplate')
+    monTemplate?: TemplateRef<any>
+    @ViewChild('monContainer', { read: ViewContainerRef})
+    monContainer?: ViewContainerRef;
+
+    onClick() {
+        if(this.monTemplate) {
+            this.monContainer?.clear();
+            this.monContainer?.createEmbeddedView(this.monTemplate);
+        }  
+    }
+
+   
+
+
     @ViewChild('prenom')
     prenom?: ElementRef<HTMLInputElement>;
 
@@ -76,5 +93,7 @@ export class UserProfileComponent {
         if (this.prenom) {
             this.prenom.nativeElement.value = '';  
           }
+        
+        console.log(this.monContainer, this.monTemplate);
     }
 }
