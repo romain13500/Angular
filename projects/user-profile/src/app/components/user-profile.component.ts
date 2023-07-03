@@ -44,7 +44,7 @@ export class UserProfileComponent {
         if(this.monTemplate) {
             this.monContainer?.clear();
             this.monContainer?.createEmbeddedView(this.monTemplate);
-        }  
+        }
     }
 
    
