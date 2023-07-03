@@ -6,7 +6,7 @@ import { Component, TemplateRef, ViewChild, ViewContainerRef } from '@angular/co
     <h1> Directive structurelle </h1>
 
     <ul>
-      <ng-template [loop]="personnes" let-personne="item" let-numero="index">
+      <ng-template [loop]="personnes" let-personne let-numero="index">
         <li>{{personne.prenom}} {{personne.nom}} ({{numero + 1}})</li>
       </ng-template>
     </ul><br>
@@ -14,7 +14,7 @@ import { Component, TemplateRef, ViewChild, ViewContainerRef } from '@angular/co
     <hr><br>
 
     <ul>
-        <li *loop="personnes; let personne = item; let numero = index">
+        <li *loop="personnes; let personne; let numero = index">
           {{personne.prenom}} {{personne.nom}} ({{numero + 1}})
         </li>
 
