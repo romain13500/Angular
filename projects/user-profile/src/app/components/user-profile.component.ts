@@ -10,6 +10,16 @@ import { Component, ElementRef, Input, ViewChild } from "@angular/core";
         <button (click)="dismissal()">Licencier</button>
         <input #prenom type="text" placeholder="Nouveau Prenom"/>
         <button (click)="changePrenom()">Changer le prenom</button>
+        <hr><br>
+
+        <ng-template>
+            <h2> hello wolrd</h2>
+        </ng-template>
+
+        <ng-container>
+            <h3>je suis le container </h3>
+        </ng-container>
+
         
     `,
     styles: [`
