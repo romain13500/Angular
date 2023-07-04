@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+import { PasswordDisplayComponent } from './components/password-display.component';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -8,7 +9,8 @@ describe('AppComponent', () => {
   beforeEach(async()=> {
     await TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        PasswordDisplayComponent
       ],
       imports: [FormsModule]
     }).compileComponents();
