@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { PasswordControlsComponent } from './components/password-controls.component';
 import { PasswordDisplayComponent } from './components/password-display.component';
+import { PasswordSettingsComponent } from './components/password-settings.component';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -12,7 +13,8 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         PasswordDisplayComponent,
-        PasswordControlsComponent
+        PasswordControlsComponent,
+        PasswordSettingsComponent
       ],
       imports: [FormsModule]
     }).compileComponents();
@@ -38,19 +40,19 @@ describe('AppComponent', () => {
 
   it('test checkbox', async()=> {
     fixture.nativeElement.querySelector('#uppercase').click();
-    expect(fixture.componentInstance.uppercase).toBeTrue();
+    expect(fixture.componentInstance.settings.uppercase).toBeTrue();
 
     fixture.nativeElement.querySelector('#numbers').click();
-    expect(fixture.componentInstance.numbers).toBeTrue();
+    expect(fixture.componentInstance.settings.numbers).toBeTrue();
 
     fixture.nativeElement.querySelector('#symbols').click();
-    expect(fixture.componentInstance.symbols).toBeTrue();
+    expect(fixture.componentInstance.settings.symbols).toBeTrue();
 
     const length = fixture.nativeElement.querySelector('#length');
     length.value = 30;
     length.dispatchEvent(new Event('input'));
 
-    expect(fixture.componentInstance.length).toBe(30);
+    expect(fixture.componentInstance.settings.length).toBe(30);
 
   })
 

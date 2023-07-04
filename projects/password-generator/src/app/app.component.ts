@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
+import { Settings } from './types';
 
 @Component({
   selector: 'app-root',
@@ -10,21 +11,11 @@ import { Component } from '@angular/core';
         <password-display [message]="message"></password-display>
 
         <div>
-          <label for="length">Longueur de mot de passe : {{ length }}</label>
-          <input  [(ngModel)]="length" id="length" type="range" min="10" max="50" name="length"/>
-
-          <label>
-            <input  [(ngModel)]="uppercase" role="switch" type="checkbox" name="uppercase" id="uppercase"/>
-            Contiendra des "MAJUSCULES"
-          </label>
-          <label>
-            <input  [(ngModel)]="numbers" role="switch" type="checkbox" name="numbers" id="numbers"/>
-            Contiendra des "Nombres"
-          </label>
-          <label>
-            <input  [(ngModel)]="symbols" role="switch" type="checkbox" name="symbols" id="symbols"/>
-            Contiendra des "Caractères spéciaux"
-          </label>
+          <password-settings 
+            [default-settings]="settingsCopy"
+            (settings-change)="onSettingsChange($event)" 
+          ></password-settings>
+          <hr>
           <password-controls (generate)="onClickGenerate()"></password-controls>
         </div>
       </div>
@@ -39,20 +30,28 @@ export class AppComponent {
 
   password?: string;
 
-  length = 50;
-  uppercase = false;
-  numbers = false;
-  symbols = false;
+  settings: Settings = {
+    length: 30,
+    uppercase: false,
+    numbers: false,
+    symbols: false,
+  };
+
+  get settingsCopy() {
+    return {...this.settings};
+  }
+
+  
+  onSettingsChange(obj: Settings) {
+    this.settings = obj;
+    console.table(this.settings);
+    
+  }
 
   onClickGenerate(){
     this.message = 'Mon_password';
     console.log('Génération du password avec');
-    console.table({
-      uppercase: this.uppercase,
-      numbers: this.numbers,
-      symbols: this.symbols,
-      length: this.length,
-    })
+    console.table(this.settings);
   }
 
   
