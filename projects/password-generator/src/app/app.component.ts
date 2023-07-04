@@ -44,8 +44,6 @@ export class AppComponent {
   
   onSettingsChange(obj: Settings) {
     this.settings = obj;
-    console.table(this.settings);
-    
   }
 
   onClickGenerate(){
