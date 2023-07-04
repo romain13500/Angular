@@ -8,7 +8,7 @@ import { Settings } from './types';
       <h1>Générez un mot de passe ! </h1>
       <div class="grid">
 
-        <password-display [message]="message"></password-display>
+        <password-display [password]="password"></password-display>
 
         <div>
           <password-settings 
@@ -49,7 +49,7 @@ export class AppComponent {
   }
 
   onClickGenerate(){
-    this.message = 'Mon_password';
+    this.password = 'Mon_password';
     console.log('Génération du password avec');
     console.table(this.settings);
   }
