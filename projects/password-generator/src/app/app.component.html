@@ -20,7 +20,7 @@
         <input  [(ngModel)]="symbols" role="switch" type="checkbox" name="symbols" id="symbols"/>
         Contiendra des "Caractères spéciaux"
       </label>
-      <button (click)="onClickGenerate()">Générer</button>
+      <password-controls (generate)="onClickGenerate()"></password-controls>
     </div>
   </div>
 </div>

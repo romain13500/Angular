@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+import { PasswordControlsComponent } from './components/password-controls.component';
 import { PasswordDisplayComponent } from './components/password-display.component';
 
 describe('AppComponent', () => {
@@ -10,7 +11,8 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        PasswordDisplayComponent
+        PasswordDisplayComponent,
+        PasswordControlsComponent
       ],
       imports: [FormsModule]
     }).compileComponents();
