@@ -10,6 +10,8 @@ export class AppComponent {
 
   message = 'Cliquez sur le bouton "Générer"';
 
+  password?: string;
+
   length = 50;
   uppercase = false;
   numbers = false;
@@ -26,15 +28,5 @@ export class AppComponent {
     })
   }
 
-  onChangeLength(event: Event){
-    const element = event.target as HTMLInputElement;
-    this.length = +element.value;
-  }
-
-  onChangeSetting(settingName: string, settingValue: boolean){
-    if (settingName !== "uppercase" && settingName !== "numbers" && settingName !== "symbols") {
-      return;
-    }
-    this[settingName] = settingValue;
-  }
+  
 }
