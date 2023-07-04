@@ -5,8 +5,15 @@ import { Component, TemplateRef, ViewChild, ViewContainerRef } from '@angular/co
   template: `
     <h1> Directive structurelle </h1>
 
+    <h2>pagination</h2>
+
+    <a href="#" *repeat="pages; let numero">Page {{numero}}</a>
+    <button (click)="pages = pages + 1">Ajouter une page</button>
+
+    <hr>
+    <h2>exercice loop personnes</h2>
     <ul>
-      <ng-template [loop]="personnes" let-personne let-numero="index">
+      <ng-template [loopOf]="personnes" let-personne let-numero="index">
         <li>{{personne.prenom}} {{personne.nom}} ({{numero + 1}})</li>
       </ng-template>
     </ul><br>
@@ -14,11 +21,18 @@ import { Component, TemplateRef, ViewChild, ViewContainerRef } from '@angular/co
     <hr><br>
 
     <ul>
-        <li *loop="personnes; let personne; let numero = index">
+        <li *loop="let personne of personnes; let numero = index">
           {{personne.prenom}} {{personne.nom}} ({{numero + 1}})
         </li>
-
-    </ul><br>
+    </ul>
+    
+    <ul>
+        <li *ngFor="let personne of personnes; let numero = index">
+          {{personne.prenom}} {{personne.nom}} ({{numero + 1}})
+        </li>
+    </ul>
+    <button (click)="addPersonne()">Ajouter une personne</button>
+    <br>
 
     <hr><br>
 
@@ -43,6 +57,14 @@ import { Component, TemplateRef, ViewChild, ViewContainerRef } from '@angular/co
          <button>Accéder au site</button>
     </div>
 
+    <div *ngIf="age >= 18; else other">
+      <h2>Vous êtes majeur(e) !!</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque,
+         repudiandae culpa distinctio sunt sit consequatur cumque, harum consequuntur, minus ipsum asperiores placeat eos. 
+         Quae, ea.</p>
+         <button>Accéder au site</button>
+    </div>
+
     <ng-template #other>
       <h2>Vous êtes mineur(e) !!</h2>
       <p>Veuillez sortir du site !</p>
@@ -56,12 +78,21 @@ import { Component, TemplateRef, ViewChild, ViewContainerRef } from '@angular/co
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  age = 35
+  age = 35;
+
+  pages = 5;
 
   personnes = [
     {prenom: 'Kassim', nom: 'Pignatel'},
     {prenom: 'Malika', nom: 'M Saidie'},
     {prenom: 'Lior', nom: 'Chamla'}
   ]
+    addPersonne() {
+      this.personnes.push({
+        prenom: 'Didier',
+        nom: 'Drogba',
+      });
+    }
+  
 
 }

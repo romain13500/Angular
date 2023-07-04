@@ -5,12 +5,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { IfDirective } from './directive-structurelle/if.directive';
 import { LoopDirective } from './directive-structurelle/loop-directive';
+import { RepeatDirective } from './directive-structurelle/repeat.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     IfDirective,
-    LoopDirective
+    LoopDirective,
+    RepeatDirective
   ],
   imports: [
     BrowserModule,
