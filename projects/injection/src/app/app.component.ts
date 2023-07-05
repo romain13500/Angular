@@ -4,6 +4,9 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <h1>Injection de dépendances</h1>
+    <br>
+
+    <declaration-impots></declaration-impots>
   `,
   styles: []
 })
