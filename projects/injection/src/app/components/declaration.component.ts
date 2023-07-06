@@ -16,7 +16,7 @@ import { TaxesService } from "../services/taxes.service";
         //         return new TaxesService();
         //     }
         // }
-        TaxesService,
+        // TaxesService,
     ]
 })
 export class DeclarationComponent {
