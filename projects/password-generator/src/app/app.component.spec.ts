@@ -56,4 +56,15 @@ describe('AppComponent', () => {
 
     expect(fixture.componentInstance.settings.length).toBe(30);
   });
+
+  it("devrait afficher un bouton de copie lorsque le mot de passe est généré", () => {
+    const service = TestBed.inject(PasswordGeneratorService);
+    const spy = spyOn(service, "generate");
+    spy.and.returnValue("MOCK_PASSWORD");
+
+    fixture.nativeElement.querySelector('#generate').click();
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('#copy')).not.toBeNull();
+  })
 });

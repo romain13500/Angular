@@ -16,7 +16,7 @@ import { Settings } from './types';
             (settings-change)="onSettingsChange($event)"
           ></password-settings>
           <hr />
-          <password-controls (generate)="onClickGenerate()"></password-controls>
+          <password-controls [password]="password" (generate)="onClickGenerate()"></password-controls>
         </div>
       </div>
     </div>
@@ -31,7 +31,7 @@ export class AppComponent {
   password?: string;
 
   settings: Settings = {
-    length: 30,
+    length: 10,
     uppercase: false,
     numbers: false,
     symbols: false,
