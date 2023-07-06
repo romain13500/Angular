@@ -4,7 +4,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   selector: 'password-controls',
   template: `
     <button id="generate" (click)="onClickGenerate()">Générer</button>
-    <button id="copy" *ngIf="password">Copiez le mot de passe</button>
+    <button id="copy" (click)="onClickCopy()" *ngIf="password">Copiez le mot de passe</button>
   `,
   styles: [
   ]
@@ -15,6 +15,13 @@ export class PasswordControlsComponent {
   
   @Input()
   password?: string;
+
+  onClickCopy() {
+    if (!this.password) {
+      return;
+    }
+    navigator.clipboard.writeText(this.password);
+  }
 
   onClickGenerate() {
     this.onGenerateEvent.emit();

@@ -46,4 +46,18 @@ describe('PasswordControlsComponent', () => {
 
         expect(fixture.nativeElement.querySelector('#copy')).toBeTruthy();
     })
+
+    it('doit copier le mot de passe lorsque l\'utilisateur clique sur le bouton de copie', () => {
+
+        const spy = spyOn(navigator.clipboard, "writeText");
+       
+    //    UNE FOIS LE PASSWORD GENERE
+
+        fixture.componentInstance.password = 'MOCK_PASSWORD';
+        fixture.detectChanges();
+
+        fixture.nativeElement.querySelector('#copy').click();
+
+        expect(spy).toHaveBeenCalledWith('MOCK_PASSWORD');
+    })
 });
