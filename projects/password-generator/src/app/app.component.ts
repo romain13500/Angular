@@ -1,29 +1,27 @@
 import { Component, Output } from '@angular/core';
-import { PasswordGeneratorService } from './password-generator.service';
+import { PasswordGeneratorService } from './password-generator/password-generator.service';
 import { Settings } from './types';
-
 
 @Component({
   selector: 'app-root',
   template: `
     <div class="container">
-      <h1>Générez un mot de passe ! </h1>
+      <h1>Générez un mot de passe !</h1>
       <div class="grid">
-
         <password-display [password]="password"></password-display>
 
         <div>
-          <password-settings 
+          <password-settings
             [default-settings]="settingsCopy"
-            (settings-change)="onSettingsChange($event)" 
+            (settings-change)="onSettingsChange($event)"
           ></password-settings>
-          <hr>
+          <hr />
           <password-controls (generate)="onClickGenerate()"></password-controls>
         </div>
       </div>
     </div>
   `,
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'password-generator';
@@ -42,15 +40,14 @@ export class AppComponent {
   constructor(private service: PasswordGeneratorService) {}
 
   get settingsCopy() {
-    return {...this.settings};
+    return { ...this.settings };
   }
 
-  
   onSettingsChange(obj: Settings) {
     this.settings = obj;
   }
 
-  onClickGenerate(){
+  onClickGenerate() {
     this.password = this.service.generate({
       length: this.settings.length,
       uppercase: this.settings.uppercase,
@@ -60,6 +57,4 @@ export class AppComponent {
     console.log('Génération du password avec');
     console.table(this.settings);
   }
-
-  
 }
