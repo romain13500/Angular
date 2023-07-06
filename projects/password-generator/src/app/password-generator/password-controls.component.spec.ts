@@ -63,4 +63,33 @@ describe('PasswordControlsComponent', () => {
         expect(fixture.nativeElement.querySelector('#copy-message')).not.toBeNull('Le mot de passe a était copié ✅');
     })
 
+    it("faire disparaître le message de copie", () => {
+        // MESSAGE APPARENT
+        const spy = spyOn(navigator.clipboard, "writeText");
+        
+
+        fixture.componentInstance.password = 'MOCK_PASSWORD';
+        fixture.detectChanges();
+
+        fixture.nativeElement.querySelector('#copy').click();
+        
+
+        expect(fixture.nativeElement.querySelector("#copy-message")).toBeTruthy();
+
+
+        // SI JE CHANGE LE PASSWORD
+        fixture.componentInstance.password = 'NEW_MOCK_PASSWORD';
+        fixture.detectChanges();
+
+        expect(fixture.nativeElement.querySelector("#copy-message")).toBeNull();
+
+
+        // SI JE COPIE UN NOUVEAU
+        fixture.nativeElement.querySelector('#copy').click();
+
+
+        // RÉAPPARITION DU MESSAGE
+        expect(fixture.nativeElement.querySelector("#copy-message")).toBeTruthy();
+    })
+
 });
