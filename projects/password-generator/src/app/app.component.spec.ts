@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { PasswordControlsComponent } from './components/password-controls.component';
 import { PasswordDisplayComponent } from './components/password-display.component';
 import { PasswordSettingsComponent } from './components/password-settings.component';
+import { PasswordGeneratorService } from './password-generator.service';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -16,6 +17,7 @@ describe('AppComponent', () => {
         PasswordControlsComponent,
         PasswordSettingsComponent
       ],
+      providers: [PasswordGeneratorService],
       imports: [FormsModule]
     }).compileComponents();
 
@@ -31,11 +33,16 @@ describe('AppComponent', () => {
 
 
   it('should change message when user click button', async()=> {
+    const service = TestBed.inject(PasswordGeneratorService);
+    const spy = spyOn(service, "generate");
+
+    spy.and.returnValue("MOCK_PASSWORD");
+
     const button = fixture.nativeElement.querySelector('button');
     button.click();
 
     const article = fixture.nativeElement.querySelector('article');
-    expect(article.textContent).toBe('Mon_password');
+    expect(article.textContent).toBe('MOCK_PASSWORD');
   })
 
   it('test checkbox', async()=> {

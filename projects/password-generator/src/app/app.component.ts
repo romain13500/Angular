@@ -1,5 +1,7 @@
 import { Component, Output } from '@angular/core';
+import { PasswordGeneratorService } from './password-generator.service';
 import { Settings } from './types';
+
 
 @Component({
   selector: 'app-root',
@@ -37,6 +39,8 @@ export class AppComponent {
     symbols: false,
   };
 
+  constructor(private service: PasswordGeneratorService) {}
+
   get settingsCopy() {
     return {...this.settings};
   }
@@ -47,7 +51,12 @@ export class AppComponent {
   }
 
   onClickGenerate(){
-    this.password = 'Mon_password';
+    this.password = this.service.generate({
+      length: this.settings.length,
+      uppercase: this.settings.uppercase,
+      numbers: this.settings.numbers,
+      symbols: this.settings.symbols,
+    });
     console.log('Génération du password avec');
     console.table(this.settings);
   }
