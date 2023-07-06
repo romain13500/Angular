@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { DeclarationComponent } from './components/declaration.component';
 import { RecapComponent } from './components/recap.component';
-import { TaxesService } from './services/taxes.service';
+import { TAUX_TVA, TaxesService } from './services/taxes.service';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,13 @@ import { TaxesService } from './services/taxes.service';
   imports: [
     BrowserModule
   ],
-  providers: [TaxesService],
+  providers: [
+    TaxesService, 
+    {
+      provide: TAUX_TVA,
+      useValue: 0.2,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
