@@ -59,5 +59,8 @@ describe('PasswordControlsComponent', () => {
         fixture.nativeElement.querySelector('#copy').click();
 
         expect(spy).toHaveBeenCalledWith('MOCK_PASSWORD');
+
+        expect(fixture.nativeElement.querySelector('#copy-message')).not.toBeNull('Le mot de passe a était copié ✅');
     })
+
 });
