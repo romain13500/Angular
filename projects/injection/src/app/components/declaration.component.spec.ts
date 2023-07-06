@@ -1,38 +1,46 @@
 import { TestBed } from "@angular/core/testing"
-import { TaxesService } from "../services/taxes.service"
+import { TAUX_TVA, TaxesService } from "../services/taxes.service"
 import { DeclarationComponent } from "./declaration.component"
 
-class FakeService {
-    calculate(revenu:number) {
-        return revenu + 500
-    }
-}
+
 
 describe("DeclarationComponent", () => {
     it("Afficher le résultat des taxes", async() => {
         await TestBed.configureTestingModule({
-            declarations: [DeclarationComponent]
+            declarations: [DeclarationComponent],
+            providers: [ 
+                TaxesService,
+                {
+                provide: TAUX_TVA,
+                useValue: 0.2,
+            }],
         }).compileComponents()
 
-        TestBed.overrideComponent(DeclarationComponent, {
-            set: {
-                providers: [
-                    // {
-                    //     provide: TaxesService,
-                    //     useFactory: () => {
-                    //         return new FakeService();
-                    //     }
-                    // }
-                    {
-                        provide: TaxesService,
-                        useClass: FakeService,
-                    }
-                ]
-            }
-        })
+        // TestBed.overrideComponent(DeclarationComponent, {
+        //     set: {
+        //         providers: [
+        //             // {
+        //             //     provide: TaxesService,
+        //             //     useFactory: () => {
+        //             //         return new FakeService();
+        //             //     }
+        //             // }
+        //             {
+        //                 provide: TaxesService,
+        //                 useClass: FakeService,
+        //             }
+        //         ]
+        //     }
+        // })
+
 
         const fixture = TestBed.createComponent(DeclarationComponent);
         fixture.autoDetectChanges(true);
+
+        const service = TestBed.inject(TaxesService);
+        const spy = spyOn(service, 'calculate');
+        spy.and.callFake((revenu: number) => revenu + 500);
+        
 
         // const service = fixture.debugElement.injector.get(TaxesService);
 
